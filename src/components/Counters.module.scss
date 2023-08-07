@@ -1,0 +1,19 @@
+.group {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 1em;
+    justify-content: center;
+}
+
+.divider {
+    margin-inline: 8px;
+}
+
+.increase {
+    align-self: center;
+}
+
+.counter {
+    width: 20px;
+    text-align: center;
+}
