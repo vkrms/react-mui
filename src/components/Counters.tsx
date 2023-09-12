@@ -6,54 +6,54 @@ import Reset from "@mui/icons-material/RestartAlt";
 import { useState } from "react";
 import styles from "./Counters.module.scss";
 
-function getSessionStorage(key: string) {
+function getStorage(key: string) {
   if (!window) return null;
-  const value = window.sessionStorage.getItem(key);
+  const value = window.localStorage.getItem(key);
   return parseInt(value || "0");
 }
 
-function setSessionStorage(key: string, value: number) {
+function setStorage(key: string, value: number) {
   if (!window) return null;
-  return window.sessionStorage.setItem(key, value.toString());
+  return window.localStorage.setItem(key, value.toString());
 }
 
 function reset() {
   if (!window) return null;
-  window.sessionStorage.clear();
+  window.localStorage.clear();
   window.location.reload();
 }
 
 export default function Counters(): React.ReactNode {
-  const [viewed, setViewed] = useState(getSessionStorage("viewed") || 0);
-  const [applied, setApplied] = useState(getSessionStorage("applied") || 0);
+  const [viewed, setViewed] = useState(getStorage("viewed") || 0);
+  const [applied, setApplied] = useState(getStorage("applied") || 0);
   const [maxViewed, setMaxViewed] = useState(
-    getSessionStorage("max-viewed") || 30
+    getStorage("max-viewed") || 30
   );
   const [maxApplied, setMaxApplied] = useState(
-    getSessionStorage("max-applied") || 10
+    getStorage("max-applied") || 10
   );
 
   function plusViewed() {
     const newVal = viewed + 1;
-    setSessionStorage("viewed", newVal);
+    setStorage("viewed", newVal);
     setViewed(newVal);
   }
 
   function plusApplied() {
     const newVal = applied + 1;
-    setSessionStorage("applied", newVal);
+    setStorage("applied", newVal);
     setApplied(newVal);
   }
 
   function handlerMaxViewed(event: React.ChangeEvent<HTMLInputElement>) {
     const val = parseInt(event.target.value);
-    setSessionStorage("max-viewed", val);
+    setStorage("max-viewed", val);
     setMaxViewed(val);
   }
 
   function handlerMaxApplied(event: React.ChangeEvent<HTMLInputElement>) {
     const val = parseInt(event.target.value);
-    setSessionStorage("max-applied", val);
+    setStorage("max-applied", val);
     setMaxApplied(val);
   }
 
